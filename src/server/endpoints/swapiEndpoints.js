@@ -1,3 +1,5 @@
+const { db } = require("../../app");
+const applyPeopleEndPoints = require("../../app/People/routes/peopleRouter");
 
 const _isWookieeFormat = (req) => {
     if(req.query.format && req.query.format == 'wookiee'){
@@ -14,9 +16,7 @@ const applySwapiEndpoints = (server, app) => {
         res.send(data);
     });
 
-    server.get('/hfswapi/getPeople/:id', async (req, res) => {
-        res.sendStatus(501);
-    });
+    applyPeopleEndPoints(server, app);
 
     server.get('/hfswapi/getPlanet/:id', async (req, res) => {
         res.sendStatus(501);

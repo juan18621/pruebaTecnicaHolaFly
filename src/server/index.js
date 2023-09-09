@@ -7,7 +7,7 @@ const createExpressServer = async app => {
 	applyMiddlewares(server, app);
 	applyEndpoints(server, app);
     
-    await app.db.initDB();
+    await app.databaseService.init();
 
 	server.get('/', async (req, res) => {
 		if(process.env.NODE_ENV === 'develop'){

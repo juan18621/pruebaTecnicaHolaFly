@@ -1,12 +1,12 @@
-class AbstractPeople {
-
+class People {
     constructor(id) {
-        if (this.constructor == AbstractPeople) {
+        if (this.constructor == People) {
             throw new Error("Abstract classes can't be instantiated.");
         }
+        this.id = id;
     }
 
-    async init(){
+    init(){
         throw new Error('To be implemented');
     }
 
@@ -38,3 +38,6 @@ class AbstractPeople {
         throw new Error('To be implemented');
     }
 }
+
+
+module.exports = People;
