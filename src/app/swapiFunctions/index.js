@@ -4,14 +4,16 @@ const getWeightOnPlanet = (mass, gravity) => {
     return mass * gravity;
 }
 
-const genericRequest = async (url, method, body, logging = false) => {
+const base_url = process.env.SWAPI_BASE;
+
+const swapiRequest = async (entity, method, body, logging = false) => {
     let options = {
         method: method
     }
     if(body){
         options.body = body;
     }
-    const response = await fetch(url, options);
+    const response = await fetch(`${base_url}/${entity}`, options);
     const data = await response.json();
     if(logging){
         console.log(data);
@@ -21,5 +23,5 @@ const genericRequest = async (url, method, body, logging = false) => {
 
 module.exports = {
     getWeightOnPlanet,
-    genericRequest
+    swapiRequest
 }
