@@ -12,7 +12,7 @@ const _isWookieeFormat = (req) => {
 const applySwapiEndpoints = (server, app) => {
 
     server.get('/hfswapi/test', async (req, res) => {
-        const data = await app.swapiFunctions.swapiRequest('', 'GET', null, true);
+        const data = await app.swapiService.getSwapiData('', true);
         res.send(data);
     });
 

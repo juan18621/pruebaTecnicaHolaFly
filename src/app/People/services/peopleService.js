@@ -1,11 +1,12 @@
 
 const databaseProvider = require('../../db');
-const { genericRequest } = require('../../swapiFunctions');
+const { swapiRequest } = require('../../API/swapiService');
+
  
  class PeopleService{
     databaseService;
     dbTable = 'swPeople';
-    endPoint
+    swapiEntity = 'people'
 
     constructor(databaseService){
         this.databaseService = databaseService;
@@ -15,7 +16,7 @@ const { genericRequest } = require('../../swapiFunctions');
     async getCharacterById(id){
         let character = await this.databaseService.getById({id, table: this.dbTable});
         if(!character){
-            genericRequest()
+            swapiRequest()
         }
         return character
     }
