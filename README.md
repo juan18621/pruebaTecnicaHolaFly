@@ -4,10 +4,10 @@
 
 - Clonar este repositorio
 - Instalar las librerias externas mediante `npm install` y ejecutar el servidor mediante `npm run dev`
+- Se desarrollo fronten para acceder ingresar a http://localhost:4567/ una vez este corriendo el proyecto
 - Se instaló cors para poder realizar peticiones dezsde el frontend
 - Se instaló Joi para realizar validaciones de campos en lso end points necesarios
 - Se instaló Jest y superTest en como dependencias de desarrollo para testear los end points
-- para acceder al frontend ingresar a http://localhost:4567/
 - se utilizaron patrones de diseño SOLID por lo tanto la estructura del proyecto cambió
 - para correr el testing del proyecto correr el comando `npm run test`
 
