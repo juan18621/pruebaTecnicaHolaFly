@@ -4,7 +4,7 @@
 
 - Clonar este repositorio
 - Instalar las librerias externas mediante `npm install` y ejecutar el servidor mediante `npm run dev`
-- Se desarrollo fronten para acceder ingresar a http://localhost:4567/ una vez este corriendo el proyecto
+- Se desarrollo frontend para acceder ingresar a http://localhost:4567/ una vez este corriendo el proyecto
 - Se instaló cors para poder realizar peticiones dezsde el frontend
 - Se instaló Joi para realizar validaciones de campos en lso end points necesarios
 - Se instaló Jest y superTest en como dependencias de desarrollo para testear los end points
