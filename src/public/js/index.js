@@ -1,5 +1,9 @@
 
-const base_url = 'http://localhost:4567'
+let base_url = 'http://localhost:4567'
+const currentUrl = window.location.href;
+if(!currentUrl.includes('localhost')){
+    base_url = 'https://swapi-fullstack.onrender.com'
+}
 
 const getEndPoints = {
     "character": 'getPeople',
