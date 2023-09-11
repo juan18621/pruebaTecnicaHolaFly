@@ -106,6 +106,7 @@ renderItems =  (items, identifier)=> {
 
 createItem = async (entity, identifier) => {
     toggleSpinner(identifier, true)
+    delete entity.foundAtSwapi
     resp = await fetch(`${base_url}/hfswapi/${createEndPoints[identifier]}/`, {
         method: "POST",
         body: JSON.stringify(entity),
