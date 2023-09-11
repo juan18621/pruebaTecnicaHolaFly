@@ -6,7 +6,6 @@ class Planet {
     }
 
     setData(planetData){
-        console.log(planetData)
         Object.keys(planetData).forEach(key=> {
             if(this.hasOwnProperty(key)){
                 this[key] = planetData[key];
@@ -21,6 +20,7 @@ class Planet {
     getGravity() {
         return this.gravity;
     }
+    
 }
 
 module.exports = Planet

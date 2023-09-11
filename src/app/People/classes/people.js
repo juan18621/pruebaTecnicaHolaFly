@@ -22,11 +22,14 @@ class People {
         })
     }
 
+    calculateWeightOnPlanet(planetGravity){
+        return this.mass * planetGravity
+    }
+
 
     setHomeworldId(homeWorldUrl){
         const urlParams = homeWorldUrl.match(/.*\/(.*)\/(.*)$/);
         this.homeworld_id = `/planets/${urlParams[urlParams.length-2]}`
-        console.log(this.homeworld_id)
     }
     setHomeworldName(planetName){
         this.homeworld_name = planetName;

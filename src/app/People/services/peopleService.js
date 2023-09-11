@@ -2,7 +2,6 @@
 const { peopleFactory } = require('..');
 const databaseService = require('../../db');
 const swapiService = require('../../services/swapiService');
-const planetService = require('../../Planet/services/planetService');
 
 
  
@@ -12,10 +11,9 @@ const planetService = require('../../Planet/services/planetService');
     dbTable = 'swPeople';
     swapiEntity = 'people'
 
-    constructor(databaseService, swapiService, planetService){
+    constructor(databaseService, swapiService){
         this.databaseService = databaseService;
         this.swapiService = swapiService;
-        this.planetService = planetService;
     }
 
     //GET
@@ -45,7 +43,7 @@ const planetService = require('../../Planet/services/planetService');
     }
 
     async getCharacterHomeWorldName(planetId){
-        return (await this.planetService.getPlanetByIdFromSwapi(planetId)).name;
+        return (await this.swapiService.getPlanetById(planetId)).name;
     }
 
     async getCharacterByIdFromSwapi(id){
@@ -68,4 +66,4 @@ const planetService = require('../../Planet/services/planetService');
     }
 }
 
-module.exports = new PeopleService(databaseService, swapiService, planetService);
+module.exports = new PeopleService(databaseService, swapiService);

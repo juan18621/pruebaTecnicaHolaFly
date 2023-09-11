@@ -28,7 +28,6 @@ class SequelizeService extends DatabaseService{
     async create({entity, table}){
         try {
             const result = await this.provider[table].create(entity)
-            console.log(result)
             return result
         } catch (error) {
             throw new Error(error)

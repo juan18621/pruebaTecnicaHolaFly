@@ -12,7 +12,6 @@ class PeopleController{
 
     getPlanetById = async (req, res) => {
         const {id} = req.params;
-        console.log(id)
         try {
             const planet = await this.planetService.getPlanetById(id);
             res.json(planet);
@@ -29,6 +28,17 @@ class PeopleController{
                 planet,
                 message: 'planet created'
             });
+        } catch (error) {
+            res.json(error)
+        }
+    }
+
+
+    getWeightOnPlanetRandom = async (req, res) => {
+        const {planetId, characterId} = req.query;
+        try {
+            const result = await this.planetService.calculateWeightOnPlanet(planetId, characterId);
+            res.json(result);
         } catch (error) {
             res.json(error)
         }
