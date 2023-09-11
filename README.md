@@ -9,6 +9,7 @@
 - Se instaló Jest y superTest en como dependencias de desarrollo para testear los end points
 - para acceder al frontend ingresar a http://localhost:4567/
 - se utilizaron patrones de diseño SOLID por lo tanto la estructura del proyecto cambió
+- para correr el testing del proyecto correr el comando `npm run test`
 
 ## Instrucciones
 
