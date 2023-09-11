@@ -18,29 +18,34 @@ const planetService = require('../../Planet/services/planetService');
         this.planetService = planetService;
     }
 
+    //GET
     async getCharacterById(id){
         try {
             //object for response
-            const payload = {
+            const response = {
                 character: undefined,
                 message: ''
             }
             let characterDB = await this.databaseService.getById({id, table: this.dbTable});
             if(characterDB){
-                payload.character = peopleFactory(characterDB)
-                payload.message = 'Character found';
+                response.character = peopleFactory(characterDB)
+                response.message = 'Character found at this galaxy';
             }else{
                 // if character not exits in database, searchs in swapi and sets planet name
                 characterDB = await  this.getCharacterByIdFromSwapi(id);
-                payload.character = peopleFactory(characterDB)
-                const planetName = await  this.getCharacterHomeWorldName(payload.character.getHomeworlId().replace('/planets/', ''))
-                payload.character.setHomeworldName(planetName)
-                payload.message = 'Character found at swapi, to register it at database send the character attributes at the body to /hfswapi/people endpoint';
+                response.character = peopleFactory(characterDB)
+                const planetName = await  this.getCharacterHomeWorldName(response.character.getHomeworlId().replace('/planets/', ''))
+                response.character.setHomeworldName(planetName)
+                response.message = 'Character found at swapi, to register it at database send the character attributes at the body to POST /hfswapi/people endpoint';
             }
-            return payload;
+            return response;
         } catch (error) {
             throw error
         }
+    }
+
+    async getCharacterHomeWorldName(planetId){
+        return (await this.planetService.getPlanetByIdFromSwapi(planetId)).name;
     }
 
     async getCharacterByIdFromSwapi(id){
@@ -56,14 +61,10 @@ const planetService = require('../../Planet/services/planetService');
         return character;
     }
 
+    //POST
     async createCharacter(character){
         const characterDB = await this.databaseService.create({entity: character, table: this.dbTable});
         return characterDB
-    }
-
-    async getCharacterHomeWorldName(planetId){
-        console.log(planetId)
-        return (await this.planetService.getPlanetByIdFromSwapi(planetId)).name;
     }
 }
 
