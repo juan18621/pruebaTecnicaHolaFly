@@ -1,13 +1,15 @@
 class People {
-    constructor(id) {
+    constructor(characterData) {
         if (this.constructor == People) {
             throw new Error("Abstract classes can't be instantiated.");
         }
-        this.id = id;
+        this.setData(characterData)
     }
 
-    init(){
-        throw new Error('To be implemented');
+    setData(characterData){
+        Object.keys(characterData).forEach(key=> {
+            this[key] = characterData[key];
+        })
     }
 
     getId() {

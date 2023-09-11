@@ -6,9 +6,6 @@ class WookiPeople extends People {
         super(id)
     }
 
-    init(){
-        
-    }
 }
 
 module.exports = WookiPeople;

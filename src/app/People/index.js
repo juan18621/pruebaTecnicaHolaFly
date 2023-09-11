@@ -3,14 +3,13 @@ const WookieePeople = require('./classes/wookiPeople');
 
 
 
-const peopleFactory = async (id, lang) => {
+const peopleFactory = async (character, lang) => {
     let people = null;
     if (lang == 'wookiee'){
-        people = new WookieePeople(id);
+        people = new WookieePeople(character);
     } else {
-        people = new CommonPeople(id);
+        people = new CommonPeople(character);
     }
-    await people.init();
     return people;
 }
 

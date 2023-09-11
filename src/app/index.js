@@ -1,5 +1,5 @@
 const databaseService = require('./db');
-const swapiService = require('./API/swapiService')
+const swapiService = require('./People/services/swapiService')
 
 module.exports = {
     databaseService,
