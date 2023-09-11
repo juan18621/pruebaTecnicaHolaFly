@@ -1,4 +1,9 @@
 class People {
+    name
+    mass
+    height
+    homeworld_name
+    homeworld_id
     constructor(characterData) {
         if (this.constructor == People) {
             throw new Error("Abstract classes can't be instantiated.");
@@ -8,8 +13,22 @@ class People {
 
     setData(characterData){
         Object.keys(characterData).forEach(key=> {
-            this[key] = characterData[key];
+            if(this.hasOwnProperty(key)){
+                this[key] = characterData[key];
+            }
+            if(key === 'homeworld'){
+                this.setHomeworldId(characterData[key])
+            }
         })
+    }
+
+
+    setHomeworldId(homeWorldUrl){
+        const urlParams = homeWorldUrl.match(/.*\/(.*)\/(.*)$/);
+        this.homeworld_id = urlParams[urlParams.length-2]
+    }
+    setHomeworldName(planetName){
+        this.homeworld_name = planetName;
     }
 
     getId() {
@@ -29,11 +48,11 @@ class People {
     }
 
     getHomeworldName() {
-        return this.homeworldName;
+        return this.homeworld_name;
     }
 
     getHomeworlId() {
-        return this.homeworlId;
+        return this.homeworld_id;
     }
 
     getWeightOnPlanet(planetId){

@@ -13,16 +13,26 @@ class SequelizeService extends DatabaseService{
 
     async getById({id, table}){
         try {
-            const character = await this.provider[table].findOne({
+            const result = await this.provider[table].findOne({
                 where: {
                     id
                   }
             })
-            return character?.dataValues;
+            return result?.dataValues;
         } catch (error) {
             throw new Error(error)
         }
        
+    }
+
+    async create({entity, table}){
+        try {
+            const result = await this.provider[table].create(entity)
+            console.log(result)
+            return result
+        } catch (error) {
+            throw new Error(error)
+        }
     }
 }
 
