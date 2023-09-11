@@ -35,10 +35,21 @@ button{
   }
   
   a{
-    text-decoration: none;
-    color: var(--black-8);
+   text-decoration: underline;
+    color: var(--cs-primary-color);
+    cursor: pointer;
   }
   
   ul{
     list-style: none;
   }
+
+  :root{
+    --cs-input-height: 40px;
+    --cs-primary-color: #111720;
+    --cs-grey-color: #bcbec0;
+    --cs-danger-color: #df2e34;
+    --cs-success-color: #22c55e;
+    --cs-input-box-shadow: #bfdbfe;
+    --cs-background-color: #fff
+}

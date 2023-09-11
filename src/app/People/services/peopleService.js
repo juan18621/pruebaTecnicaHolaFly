@@ -17,12 +17,16 @@ const swapiService = require('../../services/swapiService');
     }
 
     //GET
+
+    async getCharacters(){
+        return await this.databaseService.getAll({table: this.dbTable})
+    }
     async getCharacterById(id){
         try {
             //object for response
             const response = {
                 character: undefined,
-                message: ''
+                message: '',
             }
             let characterDB = await this.databaseService.getById({id, table: this.dbTable});
             if(characterDB){
@@ -35,6 +39,7 @@ const swapiService = require('../../services/swapiService');
                 const planetName = await  this.getCharacterHomeWorldName(response.character.getHomeworlId().replace('/planets/', ''))
                 response.character.setHomeworldName(planetName)
                 response.message = 'Character found at swapi, to register it at database send the character attributes at the body to POST /hfswapi/people endpoint';
+                response.foundAtSwapi = true
             }
             return response;
         } catch (error) {

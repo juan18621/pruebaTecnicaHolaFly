@@ -1,0 +1,8 @@
+.input{
+    height: var(--cs-input-height);
+    outline: 1px solid var(--cs-grey-color);
+    border-radius: 7px;
+    width: 100%;
+    transition: box-shadow 0.1s, outline 0.5s;
+    display: flex;
+}

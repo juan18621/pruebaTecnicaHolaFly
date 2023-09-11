@@ -20,3 +20,18 @@
     max-width: 1200px;
     margin: 0 auto;
 }
+.flex{
+    display: flex;
+}
+.align-items--center{
+    align-items: center;
+}
+.justify-content--center{
+    justify-content: center;
+}
+.justify-content--space-between{
+    justify-content: space-between;
+}
+.gap--20{
+    gap: 20px;
+}

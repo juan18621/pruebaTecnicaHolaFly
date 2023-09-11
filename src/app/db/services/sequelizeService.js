@@ -36,7 +36,9 @@ class SequelizeService extends DatabaseService{
 
     async create({entity, table}){
         try {
-            const result = await this.provider[table].create(entity)
+            const result = await this.provider[table].bulkCreate([
+                entity
+              ])
             console.log(result)
 
             return result

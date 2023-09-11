@@ -3,12 +3,15 @@
 .space__wrapper{
     height: 100%;
     background: radial-gradient(ellipse at bottom, #1b2735 0%,#090a0f 100%);
+
 }
 
 .space__content {
     animation: zoomIn 0.1s;
     animation-delay: 4s;
     animation-fill-mode: backwards;
+    overflow: auto;
+    height: 100vh;
 }
 
 
