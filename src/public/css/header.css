@@ -1,0 +1,28 @@
+.header{
+    position: sticky;
+    z-index: 999;
+    top: -10px;
+    box-shadow: 0 -6px 10px 5px rgba(0,0,0,0.5);
+}
+
+.header__content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    max-width: 1200px;
+    padding: 0 3rem;
+    margin: 0 auto;
+}
+
+.header__nav-links{
+    display: flex;
+    gap: 1rem;
+}
+.header__nav-link{
+    cursor: pointer;
+}
+
+.header__logo{
+    height: 10rem;
+    width: 10rem;
+}
