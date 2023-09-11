@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
             action: DataTypes.STRING,
             header: DataTypes.STRING,
             ip: DataTypes.STRING,
-        }
+        },
     );
     return logging;
 };

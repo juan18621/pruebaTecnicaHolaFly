@@ -1,4 +1,5 @@
 const { db } = require("../../app");
+const applyLogEndPoints = require("../../app/Log/routes/logRouter");
 const applyPeopleEndPoints = require("../../app/People/routes/peopleRouter");
 const applyPlanetEndPoints = require("../../app/Planet/routes/planetRouter");
 
@@ -21,18 +22,8 @@ const applySwapiEndpoints = (server, app) => {
 
     applyPlanetEndPoints(server, app);
 
-    server.get('/hfswapi/getPlanet/:id', async (req, res) => {
-        res.sendStatus(501);
-    });
 
-    server.get('/hfswapi/getWeightOnPlanetRandom', async (req, res) => {
-        res.sendStatus(501);
-    });
-
-    server.get('/hfswapi/getLogs',async (req, res) => {
-        const data = await app.db.logging.findAll();
-        res.send(data);
-    });
+    applyLogEndPoints(server, app);
 
 }
 

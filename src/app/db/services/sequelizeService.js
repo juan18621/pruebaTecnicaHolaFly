@@ -11,6 +11,15 @@ class SequelizeService extends DatabaseService{
         await this.provider.populateDB()
     }
 
+    async getAll({table}){
+        try {
+            const result = await this.provider[table].findAll({})
+            return result;
+        } catch (error) {
+            throw new Error(error)
+        }
+       
+    }
     async getById({id, table}){
         try {
             const result = await this.provider[table].findOne({
@@ -28,6 +37,8 @@ class SequelizeService extends DatabaseService{
     async create({entity, table}){
         try {
             const result = await this.provider[table].create(entity)
+            console.log(result)
+
             return result
         } catch (error) {
             throw new Error(error)

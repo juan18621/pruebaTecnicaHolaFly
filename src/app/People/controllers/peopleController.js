@@ -1,4 +1,4 @@
-const People = require('../classes/people');
+
 const peopleService = require('../services/peopleService')
 
 class PeopleController{
