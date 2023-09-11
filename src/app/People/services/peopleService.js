@@ -20,61 +20,50 @@ const planetService = require('../../Planet/services/planetService');
 
     async getCharacterById(id){
         try {
-            const characterDB = await this.databaseService.getById({id, table: this.dbTable});
-            // if character not exit in database, it shows an error to search by name as the swapi end point can not search character by id
-            if(!characterDB){
-              throw (
+            //object for response
+            const payload = {
+                character: undefined,
+                message: ''
+            }
+            let characterDB = await this.databaseService.getById({id, table: this.dbTable});
+            if(characterDB){
+                payload.character = peopleFactory(characterDB)
+                payload.message = 'Character found';
+            }else{
+                // if character not exits in database, searchs in swapi and sets planet name
+                characterDB = await  this.getCharacterByIdFromSwapi(id);
+                payload.character = peopleFactory(characterDB)
+                const planetName = await  this.getCharacterHomeWorldName(payload.character.getHomeworlId().replace('/planets/', ''))
+                payload.character.setHomeworldName(planetName)
+                payload.message = 'Character found at swapi, to register it at database send the character attributes at the body to /hfswapi/people endpoint';
+            }
+            return payload;
+        } catch (error) {
+            throw error
+        }
+    }
+
+    async getCharacterByIdFromSwapi(id){
+        const character = await this.swapiService.getCharacterById(id)
+        if(!character){
+            throw (
                 {   
                     code: 404,
-                    error:"Star wars character not stored in database, please search by character name",
-                    payload:{
-                        id,
-                        solution: 'send the character name to this endpoint /hfswapi/getPeopleByName/:character_name'
-                    }
+                    error:"Star wars character not stored in database",
+            
                 })
-            }
-            const character = peopleFactory(characterDB)
-            return character;
-        } catch (error) {
-            throw error
         }
+        return character;
     }
-    
-    async getCharacterByName(name){
-        try {
-            const characters = await this.getCharactersFromApi();
-            const characterDB =  characters.find(characterAPI => characterAPI.name === name ) 
-            if(!characterDB){
-                throw ({
-                    code: 404,
-                    error:"Star wars character not stored in database, please search by character name",
-                  })
-              }
-            const character = peopleFactory(characterDB)
-            const planetName = await  this.getCharacterHomeWorldName(character.getHomeworlId())
-            character.setHomeworldName(planetName)
-            return character;
-        } catch (error) {
-            throw error
-        }
-    }
-
 
     async createCharacter(character){
-        console.log(character)
         const characterDB = await this.databaseService.create({entity: character, table: this.dbTable});
         return characterDB
     }
 
-
-
-    async getCharactersFromApi(){
-        return await this.swapiService.getCharacters(this.swapiEntity)
-    }
-
-
     async getCharacterHomeWorldName(planetId){
-        return (await this.planetService.getPlanetById(planetId)).name;
+        console.log(planetId)
+        return (await this.planetService.getPlanetByIdFromSwapi(planetId)).name;
     }
 }
 

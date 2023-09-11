@@ -18,9 +18,9 @@ class SwapiService{
         return await this.httpClientService.get(this.base_url)
     }
 
-    getCharacters = async () => {
-        const data = await this.httpClientService.get(`${this.base_url}/people`)
-        return data.results;
+    getCharacterById = async (id) => {
+        const data = await this.httpClientService.get(`${this.base_url}/people/${id}`)
+        return data;
     }
 
      getPlanetById = async (planetId) => {
