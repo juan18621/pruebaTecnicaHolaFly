@@ -16,10 +16,15 @@
 
 .header__nav-links{
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
 }
 .header__nav-link{
     cursor: pointer;
+}
+
+.header__nav-link a{
+    color: #ffff;
+    text-decoration: none;
 }
 
 .header__logo{

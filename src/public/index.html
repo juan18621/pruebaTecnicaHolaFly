@@ -32,14 +32,18 @@
             <img src="./img/logo.png" alt="" class="header__logo" />
             <nav class="header__nav">
               <ul class="header__nav-links">
-                <li class="header__nav-link">Characters</li>
-                <li class="header__nav-link">Planet</li>
-                <li class="header__nav-link">Logs</li>
+                <li class="header__nav-link">
+                  <a href="#characters">Characters</a>
+                </li>
+                <li id="planets" class="header__nav-link">
+                  <a href="#planets">Planets</a>
+                </li>
+                <li id="characters" class="header__nav-link">Logs</li>
               </ul>
             </nav>
           </div>
         </header>
-        <section class="characters wrapper">
+        <section id="characters" class="characters wrapper">
           <div class="flex justify-content--space-between align-items--center">
             <h1 class="margin-top--24 font-size--32 margin">My Characters</h1>
             <div class="margin-top--16 flex gap--20">
@@ -54,7 +58,7 @@
           </div>
           <div id="character" class="cards margin-top--24"></div>
         </section>
-        <section class="planets wrapper margin-top--24">
+        <section id="planets" class="planets wrapper margin-top--24">
           <div class="flex justify-content--space-between align-items--center">
             <h1 class="margin-top--24 font-size--32">My Planets</h1>
             <div class="margin-top--16 flex gap--20">
@@ -68,6 +72,12 @@
             </div>
           </div>
           <div id="planet" class="cards margin-top--24"></div>
+        </section>
+        <section id="logs" class="planets wrapper margin-top--24">
+          <div class="flex justify-content--space-between align-items--center">
+            <h1 class="margin-top--24 font-size--32">Logs</h1>
+          </div>
+          <div id="log" class="cards margin-top--24"></div>
         </section>
       </div>
     </section>

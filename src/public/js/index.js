@@ -4,6 +4,7 @@ const base_url = 'http://localhost:4567'
 const getEndPoints = {
     "character": 'getPeople',
     "planet": 'getPlanets',
+    "log": 'getLogs',
 }
 const getByIdEndPoints = {
     "character": 'getPeople',
@@ -17,6 +18,7 @@ const createEndPoints = {
 document.addEventListener("DOMContentLoaded", async (event) => {
     toggleSpinner("character", true)
     toggleSpinner("planet", true)
+    toggleSpinner("log", true)
 
     setTimeout(async () => {
         const hyperSpace = document.querySelector('.hyperspace')
@@ -24,6 +26,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
         setButtons()
         getItemsDB("character");
         getItemsDB("planet");
+        getItemsDB("log");
     }, 6000);
 });
 
