@@ -22,7 +22,6 @@ const applySwapiEndpoints = (server, app) => {
 
     applyPlanetEndPoints(server, app);
 
-
     applyLogEndPoints(server, app);
 
 }

@@ -4,15 +4,19 @@ const bodyParser = require('body-parser');
 
 const createServer = require('./server');
 
+const express = require('express');
+
+
 const app = require('./app');
+
+const path = require('path')
+
 
 async function start() {
   const server = await createServer(app);
 
 
-  server.get('/', (req, res) => {
-    res.send('Welcome to Holafly\'s Technical test!');
-  });
+  server.use('/', express.static(path.join(__dirname, 'public')))
 
 	// Start the GraphQL server
   const port = process.env.PORT || 4567;
