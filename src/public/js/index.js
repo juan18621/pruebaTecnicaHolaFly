@@ -5,6 +5,10 @@ const getEndPoints = {
     "character": 'getPeople',
     "planet": 'getPlanets',
 }
+const getByIdEndPoints = {
+    "character": 'getPeople',
+    "planet": 'getPlanet',
+}
 const createEndPoints = {
     "character": 'people',
     "planet": 'planet'
@@ -32,6 +36,12 @@ setButtons = ()=> {
             getItemById(characterInput.value, "character");
         }
     });
+    setButtonListener('searchPlanet', () => {
+        const planetInput = document.getElementById('planetInput')
+        if(planetInput.value){
+            getItemById(planetInput.value, "planet");
+        }
+    });
 
 
 }
@@ -54,9 +64,9 @@ setButtonListener = (id, callback)=> {
 
 getItemsDB= async (identifier)=> {
     toggleSpinner(identifier, true)
-    const character = await (await fetch(`${base_url}/hfswapi/${getEndPoints[identifier]}/`)).json()
+    const items = await (await fetch(`${base_url}/hfswapi/${getEndPoints[identifier]}/`)).json()
     toggleSpinner(identifier, false)
-    renderItems(character, identifier)
+    renderItems(items, identifier)
 
 }
 
@@ -81,7 +91,7 @@ renderItems =  (items, identifier)=> {
         itemsContainer.appendChild(card)
 
         if(item.foundAtSwapi){
-            card.innerHTML += `<p>Item found at swapi <br> <a id="create${identifier}">Create it at database?</a></p>`
+            card.innerHTML += `<p class="margin-top--16 text-color--secondary">${identifier} found at swapi <br> <a id="create${identifier}">Create it at database?</a></p>`
             setButtonListener(`create${identifier}`, () => {
                 
                 createItem(item, identifier);
@@ -106,12 +116,13 @@ createItem = async (entity, identifier) => {
 }
 
 getItemById = async (id, identifier) => {
+    console.log(id)
     if(!id){
         return
     }
     
     toggleSpinner(identifier, true)
-    const response = await (await fetch(`${base_url}/hfswapi/getPeople/${id}`)).json();
+    const response = await (await fetch(`${base_url}/hfswapi/${getByIdEndPoints[identifier]}/${id}`)).json();
     toggleSpinner(identifier, false)
     if(!response[identifier]){
         return
@@ -119,6 +130,7 @@ getItemById = async (id, identifier) => {
     if(response.foundAtSwapi){
         response[identifier].foundAtSwapi = true
     }
+    console.log(response)
     renderItems([response[identifier]], identifier)
 }
 

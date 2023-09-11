@@ -12,6 +12,7 @@
     animation-fill-mode: backwards;
     overflow: auto;
     height: 100vh;
+    padding-bottom: 2rem;
 }
 
 

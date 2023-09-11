@@ -9,6 +9,15 @@ class PeopleController{
         this.planetService = planetService;
     }
 
+    getPlanets = async (req, res) => {
+        try {
+            const result = await this.planetService.getPlanets();
+            res.json(result);
+        } catch (error) {
+            res.json(error)
+        }
+    }
+
 
     getPlanetById = async (req, res) => {
         const {id} = req.params;

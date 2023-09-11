@@ -47,6 +47,7 @@ button{
   :root{
     --cs-input-height: 40px;
     --cs-primary-color: #111720;
+    --cs-secondary-color: #F5C503;
     --cs-grey-color: #bcbec0;
     --cs-danger-color: #df2e34;
     --cs-success-color: #22c55e;

@@ -17,6 +17,10 @@ class PlanetService{
         this.peopleService = peopleService;
     }
 
+    async getPlanets(){
+        return await this.databaseService.getAll({table: this.dbTable})
+    }
+
     async getPlanetById(id){
         try {
             const response = {
@@ -28,6 +32,8 @@ class PlanetService{
             if(!planetDB){
                 planetDB = await this.getPlanetByIdFromSwapi(id)
                 response.message = 'Planet found at swapi, to register it at database send the planet attributes at the body to POST /hfswapi/planet endpoint';
+                response.foundAtSwapi = true
+            
             }
             
 
