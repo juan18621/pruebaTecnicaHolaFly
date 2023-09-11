@@ -8,7 +8,7 @@
 - Se instaló cors para poder realizar peticiones dezsde el frontend
 - Se instaló Joi para realizar validaciones de campos en lso end points necesarios
 - Se instaló Jest y superTest en como dependencias de desarrollo para testear los end points
-- se utilizaron patrones de diseño SOLID por lo tanto la estructura del proyecto cambió
+- se utilizaron patrones de diseño SOLID por lo tanto la estructura del proyecto cambió a una arquitectura modular
 - para correr el testing del proyecto correr el comando `npm run test`
 
 ## Instrucciones
