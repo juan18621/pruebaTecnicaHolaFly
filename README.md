@@ -4,7 +4,8 @@
 
 - Clonar este repositorio
 - Instalar las librerias externas mediante `npm install` y ejecutar el servidor mediante `npm run dev`
-- Se desarrollo frontend para acceder ingresar a http://localhost:4567/ una vez este corriendo el proyecto
+- Se desarrollo frontend y se desplegó para acceder ingresar a https://swapi-fullstack.onrender.com/
+- En caso de que la url del frontend no funcione, correrlo localmente e ingresar a http://localhost:4567/ una vez este corriendo el proyecto
 - Se instaló cors para poder realizar peticiones dezsde el frontend
 - Se instaló Joi para realizar validaciones de campos en lso end points necesarios
 - Se instaló Jest y superTest en como dependencias de desarrollo para testear los end points
