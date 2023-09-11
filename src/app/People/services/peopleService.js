@@ -29,6 +29,7 @@ const swapiService = require('../../services/swapiService');
                 message: '',
             }
             let characterDB = await this.databaseService.getById({id, table: this.dbTable});
+           
             if(characterDB){
                 response.character = peopleFactory(characterDB)
                 response.message = 'Character found at this galaxy';

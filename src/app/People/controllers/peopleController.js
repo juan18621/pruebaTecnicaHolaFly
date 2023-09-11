@@ -13,9 +13,9 @@ class PeopleController{
     getCharacters = async (req, res) => {
         try {
             const result = await this.peopleService.getCharacters();
-            res.json(result);
+            res.status(200).json(result);
         } catch (error) {
-            res.json(error)
+            res.status(400).json(error)
         }
     }
 
@@ -23,24 +23,23 @@ class PeopleController{
         const {id} = req.params;
         try {
             const result = await this.peopleService.getCharacterById(id);
-            res.json(result);
+            res.status(200).json(result);
         } catch (error) {
-            res.json(error)
+            res.status(400).json(error)
         }
     }
 
 
     createCharacter = async (req, res) => {
         const characterToSave = req.body;
-        console.log(characterToSave,'ENNNTUUT')
         try {
             const character = await this.peopleService.createCharacter(characterToSave);
-            res.json({
+            res.status(200).json({
                 character,
                 message: 'character created'
             });
         } catch (error) {
-            res.json(error)
+            res.status(400).json(error)
         }
     }
 }

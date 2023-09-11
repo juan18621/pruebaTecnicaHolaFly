@@ -2,10 +2,11 @@ const express = require('express');
 const applyEndpoints = require('./endpoints');
 const applyMiddlewares = require('./middlewares');
 const path = require('path')
-const cors = require('cors');
+var cors = require('cors');
+server = express();
+require('dotenv').config();
 
 const createExpressServer = async app => {
-	const server = express();
 	server.use(express.json());
 	server.use(express.static('public'))
 	server.use(cors())
@@ -20,4 +21,4 @@ const createExpressServer = async app => {
 	return server;
 };
 
-module.exports = createExpressServer;
+module.exports = {server, createExpressServer};

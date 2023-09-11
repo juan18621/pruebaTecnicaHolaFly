@@ -2,7 +2,7 @@ const httpClientService = require('./httpClientService')
 
 class SwapiService{
     
-    base_url = process.env.SWAPI_BASE;
+    base_url = 'https://swapi.dev/api/';
     httpClientService;
 
     constructor(httpClientService){

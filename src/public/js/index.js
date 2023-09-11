@@ -120,7 +120,6 @@ createItem = async (entity, identifier) => {
 }
 
 getItemById = async (id, identifier) => {
-    console.log(id)
     if(!id){
         return
     }
@@ -134,7 +133,6 @@ getItemById = async (id, identifier) => {
     if(response.foundAtSwapi){
         response[identifier].foundAtSwapi = true
     }
-    console.log(response)
     renderItems([response[identifier]], identifier)
 }
 

@@ -15,7 +15,6 @@ class LogService{
     }
 
     async createLog(log){
-
         await this.databaseService.create({entity: log, table: 'logging'})
     }
 

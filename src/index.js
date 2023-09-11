@@ -1,8 +1,7 @@
 
 
-const bodyParser = require('body-parser');
 
-const createServer = require('./server');
+const {createExpressServer} = require('./server');
 
 const express = require('express');
 
@@ -13,7 +12,7 @@ const path = require('path')
 
 
 async function start() {
-  const server = await createServer(app);
+  const server = await createExpressServer(app);
 
 
   server.use('/', express.static(path.join(__dirname, 'public')))

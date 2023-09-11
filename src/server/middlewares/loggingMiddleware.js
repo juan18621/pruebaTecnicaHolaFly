@@ -11,6 +11,8 @@ const loggingMiddleware = (db) =>
         // Persist this info on DB
         const log = new Log(originalUrl, headers, ip)
 
+        console.log(log)
+
         await logService.createLog({entity: log, table: 'logging'})
         
         next();
