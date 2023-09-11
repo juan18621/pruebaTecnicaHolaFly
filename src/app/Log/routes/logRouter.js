@@ -1,9 +1,11 @@
 const logController = require("../controllers/logController");
 
 
-const applyLogEndPoints = (server, app) => {
-    server.get('/hfswapi/getLogs', logController.getLogs );
-}
+const logRouter = require('express').Router()
 
 
-module.exports = applyLogEndPoints;
+logRouter.get('/hfswapi/getLogs', logController.getLogs );
+
+
+
+module.exports = logRouter;

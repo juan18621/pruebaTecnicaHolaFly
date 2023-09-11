@@ -11,7 +11,8 @@
     flex: 1 0 auto;
     border-radius: 6px;
     padding: 1rem;
-    max-width: 33%;
+    max-width: 30%;
+    overflow: hidden;
   }
   
   .card:hover {

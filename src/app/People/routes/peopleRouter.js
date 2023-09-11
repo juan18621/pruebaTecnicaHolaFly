@@ -3,11 +3,12 @@ const validatorHandler = require('../../../server/middlewares/validatorHandler')
 const peopleController = require('../controllers/peopleController');
 const peopleSchema = require('../schemas/peopleSchema');
 
-const applyPeopleEndPoints = (server, app) => {
-    server.get('/hfswapi/getPeople', peopleController.getCharacters );
-    server.get('/hfswapi/getPeople/:id', peopleController.getCharacterById );
-    server.post('/hfswapi/people', validatorHandler(peopleSchema, 'body'), peopleController.createCharacter );
-}
+const peopleRouter = require('express').Router()
+
+peopleRouter.get('/hfswapi/getPeople', peopleController.getCharacters );
+peopleRouter.get('/hfswapi/getPeople/:id', peopleController.getCharacterById );
+peopleRouter.post('/hfswapi/people', validatorHandler(peopleSchema, 'body'), peopleController.createCharacter );
 
 
-module.exports = applyPeopleEndPoints;
+
+module.exports = peopleRouter;

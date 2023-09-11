@@ -1,6 +1,9 @@
 const { db } = require("../../app");
+const logRouter = require("../../app/Log/routes/logRouter");
 const applyLogEndPoints = require("../../app/Log/routes/logRouter");
+const peopleRouter = require("../../app/People/routes/peopleRouter");
 const applyPeopleEndPoints = require("../../app/People/routes/peopleRouter");
+const planetRouter = require("../../app/Planet/routes/planetRouter");
 const applyPlanetEndPoints = require("../../app/Planet/routes/planetRouter");
 
 const _isWookieeFormat = (req) => {
@@ -17,12 +20,12 @@ const applySwapiEndpoints = (server, app) => {
         const data = await app.swapiService.getEndPoints('', true);
         res.send(data);
     });
+    
+    server.use(peopleRouter)
 
-    applyPeopleEndPoints(server, app);
+    server.use(planetRouter);
 
-    applyPlanetEndPoints(server, app);
-
-    applyLogEndPoints(server, app);
+    server.use(logRouter)
 
 }
 

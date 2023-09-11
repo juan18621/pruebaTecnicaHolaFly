@@ -80,7 +80,7 @@ renderItems =  (items, identifier)=> {
         const card = document.createElement('div')
         card.classList = 'card';
         card.innerHTML = `
-        <h1 class="font-size--24">${item?.name}</h1>
+        <h1 class="font-size--24">${item?.name || item?.action}</h1>
         ${Object.keys(item).map(key =>{
             if(key === 'isSwapi'){
                 return ''

@@ -9,11 +9,10 @@ const loggingMiddleware = (db) =>
         const headers = JSON.stringify(req.headers);
         const originalUrl = req.originalUrl;
         // Persist this info on DB
-        const log = new Log(originalUrl, headers, ip)
-
-        console.log(log)
-
-        await logService.createLog({entity: log, table: 'logging'})
+        if(originalUrl && originalUrl[originalUrl.length - 1] && originalUrl[originalUrl.length - 1] === '/'){
+            const log = new Log(originalUrl, headers, ip)
+            await logService.createLog(log)
+        }
         
         next();
     }

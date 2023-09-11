@@ -11,7 +11,15 @@ class DatabaseService {
         throw new Error('To be implemented');
     }
 
+    async getAll(){
+        throw new Error('To be implemented');
+    
+    }
     async getCharacterById(){
+        throw new Error('To be implemented');
+    
+    }
+    async create(){
         throw new Error('To be implemented');
     
     }
