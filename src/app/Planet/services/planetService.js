@@ -36,10 +36,12 @@ class PlanetService{
         }
     }
 
+    
 
-    getPlanetByIdFromSwapi(planetId){
+
+    async getPlanetByIdFromSwapi(planetId){
         try {
-            const planet = this.swapiService.getPlanetById(planetId)
+            const planet = await this.swapiService.getPlanetById(planetId)
             if(!planet){
                throw this.throwPlanetNotFoundError()
             }
@@ -57,6 +59,13 @@ class PlanetService{
                     id
                 }
             }
+    }
+
+
+    //POST
+    async createPlanet(planet){
+        const planetDB = await this.databaseService.create({entity: planet, table: this.dbTable});
+        return planetDB
     }
 
 }

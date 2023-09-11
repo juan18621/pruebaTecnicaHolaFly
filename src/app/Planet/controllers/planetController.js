@@ -20,6 +20,19 @@ class PeopleController{
             res.json(error)
         }
     }
+
+    createPlanet = async (req, res) => {
+        const planetToSave = req.body;
+        try {
+            const planet = await this.planetService.createPlanet(planetToSave);
+            res.json({
+                planet,
+                message: 'planet created'
+            });
+        } catch (error) {
+            res.json(error)
+        }
+    }
 }
 
 module.exports = new PeopleController(planetService);

@@ -22,7 +22,6 @@ class PeopleController{
 
 
     createCharacter = async (req, res) => {
-        console.log(req, 'asdasd')
         const characterToSave = req.body;
         try {
             const character = await this.peopleService.createCharacter(characterToSave);
