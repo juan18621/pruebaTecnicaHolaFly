@@ -12,9 +12,9 @@ class PeopleController{
     getPlanets = async (req, res) => {
         try {
             const result = await this.planetService.getPlanets();
-            res.json(result);
+            res.status(200).json(result);
         } catch (error) {
-            res.json(error)
+            res.status(400).json(error)
         }
     }
 
@@ -23,9 +23,9 @@ class PeopleController{
         const {id} = req.params;
         try {
             const planet = await this.planetService.getPlanetById(id);
-            res.json(planet);
+            res.status(200).json(planet);
         } catch (error) {
-            res.json(error)
+            res.status(400).json(error)
         }
     }
 
@@ -33,12 +33,12 @@ class PeopleController{
         const planetToSave = req.body;
         try {
             const planet = await this.planetService.createPlanet(planetToSave);
-            res.json({
+            res.status(200).json({
                 planet,
                 message: 'planet created'
             });
         } catch (error) {
-            res.json(error)
+            res.status(400).json(error)
         }
     }
 
@@ -47,9 +47,9 @@ class PeopleController{
         const {planetId, characterId} = req.query;
         try {
             const result = await this.planetService.calculateWeightOnPlanet(planetId, characterId);
-            res.json(result);
+            res.status(200).json(result);
         } catch (error) {
-            res.json(error)
+            res.status(400).json(error)
         }
     }
 }

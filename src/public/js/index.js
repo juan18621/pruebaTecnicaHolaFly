@@ -39,6 +39,9 @@ setButtons = ()=> {
             getItemById(characterInput.value, "character");
         }
     });
+    setButtonListener('resetCharacter', () => {
+        getItemsDB("character");
+    });
     setButtonListener('searchPlanet', () => {
         const planetInput = document.getElementById('planetInput')
         if(planetInput.value){
@@ -46,17 +49,23 @@ setButtons = ()=> {
         }
     });
 
+    setButtonListener('resetPlanet', () => {
+        getItemsDB("planet");
+    });
+
 
 }
 
-toggleSpinner = (container, loading) => {
+toggleSpinner = (container, loading, small) => {
     const containerElement = document.getElementById(container);
 
     if(loading){
-        containerElement.innerHTML = `<div class="spinner" id="spinner"></div>`
+        containerElement.innerHTML = `<div class="spinner ${small? 'spinner--small':''}" id="spinner"></div>`
     }else{
         containerElement.innerHTML = ``
     }
+
+    return containerElement
 }
 
 setButtonListener = (id, callback)=> {
@@ -100,8 +109,68 @@ renderItems =  (items, identifier)=> {
                 createItem(item, identifier);
                 
             });
+        }else{
+            if(identifier === 'planet'){
+                card.innerHTML += `
+                <h3>Calculate person weight</h3>
+                <div id="calculateContainer${item?.id}">
+                <div class="flex gap--20"> 
+                <input placeholder="Person ID (weight = mass*gravity)" id="calculateInput${item?.id}" class="input"/>
+                <button id="calculateButton${item?.id}" class="btn">Calculate</button>
+                </div>
+                </div>
+                `
+    
+                if(item.foundAtSwapi){
+                    card.innerHTML += `<p class="margin-top--16 text-color--secondary">${identifier} found at swapi <br> <a id="create${identifier}">Create it at database?</a></p>`
+                    setButtonListener(`create${identifier}`, () => {
+                        
+                        createItem(item, identifier);
+                        
+                    });
+                }
+        
+                setButtonListener(`calculateButton${item?.id}`, () => {
+                    
+                    calculateCharacterWeigth(item?.id, card);
+                    
+                });
+    
+    
+            
+            }
+
         }
+
     });
+}
+
+
+calculateCharacterWeigth = async (planetId, card) => {
+    if(!planetId){
+        return
+    }
+    const input = document.getElementById(`calculateInput${planetId}`)
+    if(input){
+        const container =document.getElementById(`calculateContainer${planetId}`)
+        const characterId = input.value;
+        const button = toggleSpinner(`calculateButton${planetId}`, true, true )
+        container.querySelector('p')?.remove()
+            const response = await (await fetch(`${base_url}/hfswapi/getWeightOnPlanetRandom?planetId=${planetId}&characterId=${characterId}`)).json()
+            if(response.error){
+                container.insertAdjacentHTML('beforeend', `
+                    <p
+                     class="text-color--secondary">${response?.error}</p>
+                `);
+            }else{
+                container.insertAdjacentHTML('beforeend', `
+                    <p>Character weigth: ${response?.characterWeight}</p>
+                `);
+            }
+
+        toggleSpinner(`calculateButton${planetId}`, false )
+        button.innerHTML = 'Calculate'
+    }
 }
 
 createItem = async (entity, identifier) => {

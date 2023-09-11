@@ -88,7 +88,9 @@ class PlanetService{
 
     //POST
     async createPlanet(planet){
+        console.log(planet)
         planet.gravity = parseFloat(planet.gravity)
+        console.log(planet)
         const planetDB = await this.databaseService.create({entity: planet, table: this.dbTable});
         return planetDB
     }

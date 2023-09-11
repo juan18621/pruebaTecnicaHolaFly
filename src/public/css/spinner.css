@@ -8,6 +8,10 @@
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
     margin: 0 auto;
+}
+
+.spinner--small{
+        animation: rotationSmall 1s linear infinite;
     }
 
     @keyframes rotation {
@@ -16,5 +20,14 @@
     }
     100% {
         transform: rotate(360deg);
+    }
+    } 
+
+    @keyframes rotationSmall {
+    0% {
+        transform: scale(0.4) rotate(0deg);
+    }
+    100% {
+        transform: scale(0.4) rotate(360deg);
     }
     } 

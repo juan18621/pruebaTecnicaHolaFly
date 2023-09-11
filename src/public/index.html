@@ -43,7 +43,10 @@
                 class="input characters__input"
                 placeholder="Search by id at database or SWAPI"
               />
-              <button class="btn" id="searchCharacter">Search</button>
+              <div class="flex gap--10">
+                <button class="btn" id="searchCharacter">Search</button>
+                <button class="btn" id="resetCharacter">Reset</button>
+              </div>
             </div>
           </div>
           <div id="character" class="cards margin-top--24"></div>
@@ -56,9 +59,12 @@
                 id="planetInput"
                 type="number"
                 class="input characters__input"
-                placeholder="Search by id at database or SWAPI"
+                placeholder="Planet id (try with 6 to test calculate)"
               />
-              <button class="btn" id="searchPlanet">Search</button>
+              <div class="flex gap--10">
+                <button class="btn" id="searchPlanet">Search</button>
+                <button class="btn" id="resetPlanet">Reset</button>
+              </div>
             </div>
           </div>
           <div id="planet" class="cards margin-top--24"></div>
