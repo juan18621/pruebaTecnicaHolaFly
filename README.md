@@ -6,6 +6,8 @@
 - Instalar las librerias externas mediante `npm install` y ejecutar el servidor mediante `npm run dev`
 - Se desarrolló el backend junto con frontend y se desplegó a la nube por medio de un pipeline, para acceder ingresar a https://swapi-fullstack.onrender.com/
 - Puede demorar un poco en entrar mientras prende el servidor de la nube. En caso de que definitivamente no funcione, correrlo localmente e ingresar a http://localhost:4567/ una vez este corriendo el proyecto
+- En caso de que sólo se quiera probar los end points de backend acceder como se habia dicho en las instrucciones de la prueba complementando la ruta con /hfswapi/ y el end point correspondiente
+- se insatalaron libeías adicionales
 - Se instaló cors para poder realizar peticiones dezsde el frontend
 - Se instaló Joi para realizar validaciones de campos en lso end points necesarios
 - Se instaló Jest y superTest en como dependencias de desarrollo para testear los end points
