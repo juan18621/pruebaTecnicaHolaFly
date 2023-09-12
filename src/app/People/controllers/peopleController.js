@@ -21,8 +21,9 @@ class PeopleController{
 
     getCharacterById = async (req, res) => {
         const {id} = req.params;
+        const {format} = req.query
         try {
-            const result = await this.peopleService.getCharacterById(id);
+            const result = await this.peopleService.getCharacterById(id, format);
             res.status(200).json(result);
         } catch (error) {
             res.status(400).json(error)

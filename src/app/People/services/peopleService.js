@@ -21,7 +21,7 @@ const swapiService = require('../../services/swapiService');
     async getCharacters(){
         return await this.databaseService.getAll({table: this.dbTable})
     }
-    async getCharacterById(id){
+    async getCharacterById(id, format){
         try {
             //object for response
             const response = {
@@ -35,10 +35,15 @@ const swapiService = require('../../services/swapiService');
                 response.message = 'Character found at this galaxy';
             }else{
                 // if character not exits in database, searchs in swapi and sets planet name
-                characterDB = await  this.getCharacterByIdFromSwapi(id);
-                response.character = peopleFactory(characterDB)
-                const planetName = await  this.getCharacterHomeWorldName(response.character.getHomeworlId().replace('/planets/', ''))
-                response.character.setHomeworldName(planetName)
+                characterDB = await  this.getCharacterByIdFromSwapi(id, format);
+
+                response.character = peopleFactory(characterDB, format)
+                if(format !== 'wookiee'){
+                    const planetName = await  this.getCharacterHomeWorldName(response.character.getHomeworlId().replace('/planets/', ''))
+                    response.character.setHomeworldName(planetName)
+                }else{
+                    response.wookieeFormat = true
+                }
                 response.message = 'Character found at swapi, to register it at database send the character attributes at the body to POST /hfswapi/people endpoint';
                 response.foundAtSwapi = true
             }
@@ -52,8 +57,8 @@ const swapiService = require('../../services/swapiService');
         return (await this.swapiService.getPlanetById(planetId)).name;
     }
 
-    async getCharacterByIdFromSwapi(id){
-        const character = await this.swapiService.getCharacterById(id)
+    async getCharacterByIdFromSwapi(id, format){
+        const character = await this.swapiService.getCharacterById(id, format)
         if(!character){
             throw (
                 {   
