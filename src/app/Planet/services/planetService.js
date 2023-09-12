@@ -33,7 +33,7 @@ class PlanetService{
                 planetDB = await this.getPlanetByIdFromSwapi(id, wookieeFormat)
                 response.message = 'Planet found at swapi, to register it at database send the planet attributes at the body to POST /hfswapi/planet endpoint';
                 response.foundAtSwapi = true
-                response.wookieeFormat = true
+                if(wookieeFormat)response.wookieeFormat = true
                 response.planet = new Planet(planetDB, wookieeFormat)
             }else{
                 response.planet = new Planet(planetDB)
