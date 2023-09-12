@@ -23,8 +23,8 @@ class SwapiService{
         return data;
     }
 
-     getPlanetById = async (planetId) => {
-        return await this.httpClientService.get(`${this.base_url}/planets/${planetId}`)
+     getPlanetById = async (planetId, wookieeFormat) => {
+        return await this.httpClientService.get(`${this.base_url}/planets/${planetId}${wookieeFormat ? '?format=wookiee':''}`)
     }
 }
 

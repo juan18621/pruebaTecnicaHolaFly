@@ -20,8 +20,14 @@ describe("GET/:id planet",  ()=> {
 
         test("if not exist in database should searcg it at swapi and return foundAtSwapi attribute", async () => {
             const server = await  createExpressServer(app)
-            const response = await request(server).get('/hfswapi/getPeople/2')
+            const response = await request(server).get('/hfswapi/getPlanet/2')
             expect(response.body.foundAtSwapi).toBeTruthy()
+        })
+        
+        test("if not exist in database and format=wookiee query param exist should return a wokieeFormat flag", async () => {
+            const server = await  createExpressServer(app)
+            const response = await request(server).get('/hfswapi/getPlanet/2?format=wookiee')
+            expect(response.body.wokieeFormat).toBeTruthy()
         })
 
     })

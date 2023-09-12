@@ -21,8 +21,9 @@ class PeopleController{
 
     getPlanetById = async (req, res) => {
         const {id} = req.params;
+        const {format} = req.query;
         try {
-            const planet = await this.planetService.getPlanetById(id);
+            const planet = await this.planetService.getPlanetById(id, format && format === 'wookiee');
             res.status(200).json(planet);
         } catch (error) {
             res.status(400).json(error)

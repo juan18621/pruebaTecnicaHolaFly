@@ -1,13 +1,17 @@
 class Planet {
     name;
     gravity;
-    constructor(planet){
-       this.setData(planet)
+    constructor(planet, wookieeFormat){
+       this.setData(planet, wookieeFormat)
     }
 
-    setData(planetData){
+    setData(planetData, wookieFormat){
         Object.keys(planetData).forEach(key=> {
-            if(this.hasOwnProperty(key)){
+            if(!wookieFormat){
+                if(this.hasOwnProperty(key)){
+                    this[key] = planetData[key];
+                }
+            }else{
                 this[key] = planetData[key];
             }
         })

@@ -21,7 +21,7 @@ class PlanetService{
         return await this.databaseService.getAll({table: this.dbTable})
     }
 
-    async getPlanetById(id){
+    async getPlanetById(id, wookieeFormat){
         try {
             const response = {
                 planet: undefined,
@@ -30,14 +30,16 @@ class PlanetService{
             let planetDB = await this.databaseService.getById({id, table: this.dbTable});
             // if planet not exist in the database sends the request to the swapi API
             if(!planetDB){
-                planetDB = await this.getPlanetByIdFromSwapi(id)
+                planetDB = await this.getPlanetByIdFromSwapi(id, wookieeFormat)
                 response.message = 'Planet found at swapi, to register it at database send the planet attributes at the body to POST /hfswapi/planet endpoint';
                 response.foundAtSwapi = true
-            
+                response.wookieeFormat = true
+                response.planet = new Planet(planetDB, wookieeFormat)
+            }else{
+                response.planet = new Planet(planetDB)
             }
             
 
-            response.planet = new Planet(planetDB)
             
             return response;
         } catch (error) {
@@ -48,9 +50,9 @@ class PlanetService{
     
 
 
-    async getPlanetByIdFromSwapi(planetId){
+    async getPlanetByIdFromSwapi(planetId, wookieeFormat){
         try {
-            const planet = await this.swapiService.getPlanetById(planetId)
+            const planet = await this.swapiService.getPlanetById(planetId, wookieeFormat)
             if(!planet){
                throw this.throwPlanetNotFoundError()
             }
