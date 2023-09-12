@@ -27,7 +27,7 @@ describe("GET/:id planet",  ()=> {
         test("if not exist in database and format=wookiee query param exist should return a wokieeFormat flag", async () => {
             const server = await  createExpressServer(app)
             const response = await request(server).get('/hfswapi/getPlanet/2?format=wookiee')
-            expect(response.body.wokieeFormat).toBeTruthy()
+            expect(response.body.wookieeFormat).toBeTruthy()
         })
 
     })

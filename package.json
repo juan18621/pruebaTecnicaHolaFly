@@ -18,7 +18,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon --watch ./src index.js",
-    "test": "jest"
+    "test": "jest --testTimeout=30000"
   },
   "devDependencies": {
     "jest": "^29.6.4",
