@@ -23,6 +23,11 @@ describe("GET/:id character", ()=> {
             const response = await request(server).get('/hfswapi/getPeople/2')
             expect(response.body.foundAtSwapi).toBeTruthy()
         })
+        test("if not exist in database and is wookie format should return wookieeFormat flag", async () => {
+            const server = await  createExpressServer(app)
+            const response = await request(server).get('/hfswapi/getPeople/2?format=wookiee')
+            expect(response.body.wookieeFormat).toBeTruthy()
+        })
 
     })
 })
