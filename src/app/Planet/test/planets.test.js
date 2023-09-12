@@ -37,11 +37,6 @@ describe("POST/ planet",  ()=> {
               })
             expect(response.statusCode).toBe(200)
         })
-
-
-    })
-
-    describe("given a planet payload", ()=> {
         test("should create respond with the planet data", async () => {
             const server = await  createExpressServer(app)
             const response = await request(server).post('/hfswapi/planet').send({
@@ -49,6 +44,25 @@ describe("POST/ planet",  ()=> {
                 "gravity":"1.1 standard"
               })
             expect(response.body.planet).toBeTruthy()
+        })
+
+    })
+
+})
+describe("GET/ calculate user weight on planet",  ()=> {
+
+    describe("given a planet id and character id", ()=> {
+
+        test("should return respond with statusCode 200", async () => {
+            const server = await  createExpressServer(app)
+            const response = await request(server).get('/hfswapi/getWeightOnPlanetRandom?planetId=6&characterId=1')
+            expect(response.statusCode).toBe(200)
+        })
+
+        test("should return the character weight based on w=mass*gravity", async () => {
+            const server = await  createExpressServer(app)
+            const response = await request(server).get('/hfswapi/getWeightOnPlanetRandom?planetId=6&characterId=1')
+            expect(response.body.characterWeight).toBe(115.5)
         })
 
 
